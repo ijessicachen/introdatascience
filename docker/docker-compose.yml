@@ -1,0 +1,19 @@
+#########################################################################
+#
+# docker compose file for local Jupyter Notebook development
+#
+#########################################################################
+
+version: '3.3'
+
+services:
+  mynotebook:
+    container_name: mynotebook
+    build: .
+
+    # mapping the work folder
+    volumes:
+      - ../:/home/jovyan/work
+
+    ports:
+      - "8888:8888"
