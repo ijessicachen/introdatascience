@@ -16,13 +16,13 @@ Questions:
   - Are we compliant with government regulations for data privacy?
 
 ## 2. Real World Example
-__Situation:__
+__Situation:__<br>
 "Australia to consider European-style right to be forgotten privacy laws" (The Guardian, 18 Jan 2023)
   - _European-style_ --> Nearly a decade ago on 13 May 2014, the European Union's Court of Justice made the call to make it possible for someone to request a search engine to get personal information removed from search results. If the search engine operator agrees, they will just carry it out, and if not the requester could bring it up with court. The reasons for requesting this could be because the person withdraws consent but also if it's no longer necessary for the purpose it was collected.
 
 According to their attorney general, Australia has a has an "out of date" Privacy Act that is "not fit-for-purpose in our digital age". The Attorney General, Mark Dreyfus, has already increased penalties for companies that fail to protect customer data and has mentioned the right to be forgotten and the right to sue for privacy breaches as things to be considered. In addition to what the EU has implemented, officials brought up requiring companies to dispose of data when no longer needed, and disposing of data only meant for establishing a person's identity.
 
-__Response to questions:__
+__Response to questions:__<br>
 Technically, there is no way for a person to truly remove their personal information from the internet. As this very nice police officer who once went to my elementary school to give a talk said, what goes on the internet will never come off. As for if it can be meaningfully removed, well, kind of! Because this situation has not had any tangible action come out of it (from what my shallow research has revealed). I will be comparing the _ability of an individual to get their personal information removed_ if Australia passes something similar to Europe to if they don't.
   - Not passing it? <br> well without that right to removal there isn't much one can really do
   - Passing it? <br> Well, while there is no way ever for someone to get their information removed, removing it from being searchable will do a lot to help it from being accidently leaked or found by your average Joe. However -and I don't know too much about hacking so I'm not sure how accurate this assessment is- those who are maliciously out for personal information are probably skilled enough to get past that anyways, so while it will help information won't truly be "removed"
@@ -35,17 +35,18 @@ A lot of the online space is pretty vague and people are often ill-informed of w
 
 "Are we compliant with government regulations for data privacy?" <-- we will see when the government changes that or not.
 
-__harms/unintended consequences__
+__harms/unintended consequences__<br>
 change
   - people may abuse this feature to only keep the information good to them on the internet. More privacy or less transparency?
   - This has the potential to maliciously block others' information.
-  - Those with more power could have more ease using this than those who don't, making it unequal. 
+  - Those with more power could have more ease using this than those who don't, making it unequal.
+
 no change
   - data leaks could be much more harmful towards the common population
   - there is a lot of trust in these corporation to not use the data for bad, what's to say they won't use it long after the initial purpose has expired
   - anyone could find your information
 
-__potential solutions to eliminate/mitigate adverse effects__
+__potential solutions to eliminate/mitigate adverse effects__<br>
 A good way to ensure this isn't used for the wrong reasons is to simply make regulations super tight around it. It isn't good for too much personal information to end up on the internet but catering what shows up can also be helpful. For this, and many other solutions a great way to bring this to reality would be to build upon what other institutions have already put in place. It has already been stated that the EU has had their "right to be forgotten" in place for nearly a decade. During that time they surely faced their own difficulties in effectively and ethically implementing it. Utilizing what they have found, and bringing in a new perspective can ensure anything new is implemented ethically.
 
 If it isn't implemented, more has to be invested into increasing security around personal information and, like they have done, imposing stricter regulations on corporations. It would also help to simply keep it on the down-low where to find personal information to prevent ordinary people stumbling upon sensitive information.
