@@ -19,6 +19,8 @@ docker compose --help
 
 ## Docker Compose build create and starte Jupyter server
 
+Before you do this, make sure docker is running (open the app)
+
 ```bash
 # go to docker folder of your local,
 # my local is ~/touchgrass/introdatascience/docker
@@ -27,6 +29,10 @@ cd ~/touchgrass/introdatascience/docker; ls -la
 # check the current status.
 cd ~/touchgrass/introdatascience/docker; docker compose ps
 cd ~/touchgrass/introdatascience/docker; docker compose ls
+# (shell returned 1) --> you sure the app is open?
+# compose ps should return something like this, compose ls something similar:
+# NAME                IMAGE               COMMAND             SERVICE             CREATED             STATUS              PORTS
+# with nothing below every column
 
 # create image.
 cd ~/touchgrass/introdatascience/docker; docker compose create
@@ -35,9 +41,15 @@ cd ~/touchgrass/introdatascience/docker; docker compose build
 # start notebook server
 cd ~/touchgrass/introdatascience/docker; docker compose start
 cd ~/touchgrass/introdatascience/docker; docker compose restart
+
+# checking status again should show data under to columns
+# so should checking the app
 ```
 
-check docker logs to get token
+go to _http://localhost:8888/_, which is where the notebook will run
+it will require a token to access, check docker logs to get token
+<br>OR<br>
+follow the steps below and there will be URLs you can paste directly into the browser
 
 ```bash
 cd ~/touchgrass/introdatascience/docker; docker compose logs --help
