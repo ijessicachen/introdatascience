@@ -17,7 +17,7 @@ docker compose --help
 %s/rd\/myworkshopca\/DataScienceBasic/touchgrass\/introdatascience/gc
 ```
 
-## Docker Compose build create and starte Jupyter server
+## Docker Compose build create and start Jupyter server
 
 Before you do this, make sure docker is running (open the app)
 
