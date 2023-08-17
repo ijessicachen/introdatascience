@@ -59,7 +59,7 @@ cd ~/touchgrass/introdatascience/docker; docker compose logs mynotebook
 cd ~/touchgrass/introdatascience/docker; docker compose logs -f mynotebook
 ```
 
-To save in notebook, use command S or press the save button. <br>
+To save in notebook, use command s or press the save button. <br>
 After saving you can simply commit.
 
 ### explore the jupypter container folder structure
