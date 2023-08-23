@@ -75,6 +75,16 @@ docker exec mynotebook ls -la
 docker exec mynotebook ls -la work
 ```
 
+I need to do something similar for the data set that I moved outside of git because it was too large?
+
+```bash
+docker exec mynotebook pwd
+docker exec mynotebook ls -la
+docker exec mynotebook mkdir largedata
+```
+
+and then I'll just manually move the data file there? because I'm not exactly sure how to do it from here.
+
 ### tear down everything
 
 ```bash
