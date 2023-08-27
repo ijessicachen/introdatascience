@@ -3,7 +3,8 @@ mainly from that [microsoft data science for beginners](https://github.com/micro
 
 **currently working on**
   - 2-7 challenge 2 (which leads into 2-7 assignment part 2)
-*note*
+
+**also**
   - skipped 2-6 (for now)
   - feel free at any time to go back to 2-7 assignment part 1 and make it better
   - at the very end of 2-7 challenge 2 the sankey diagram isn't showing up, fix that.

@@ -85,6 +85,34 @@ docker exec mynotebook mkdir largedata
 
 and then I'll just manually move the data file there? because I'm not exactly sure how to do it from here.
 
+**also you may need to add libraries** (don't know how to permanently add them yet) and I just did that from the terminal from the launcher.
+
+*add plotly for 2-7 challenge 2*
+
+*issues with ipywidgets*
+source: https://github.com/ricklupton/ipysankeywidget/issues/12
+```bash
+# test if my syntax is right + if the thing exists
+docker exec mynotebook pip show ipysankeywidget
+docker exec mynotebook pip show ipywidgets
+
+# uninstall if it does exist
+#you may run into issues doing this step here so you might
+#just want to do it right in the notebook on the terminal
+#because it will ask for Y/n confirmation in one step?
+#nah idk why
+docker exec mynotebook pip uninstall ipysankeywidget
+docker exec mynotebook pip uninstall ipywidgets
+
+# then install
+docker exec mynotebook pip install ipysankeywidget
+docker exec mynotebook pip install ipywidgets
+
+# then this thing
+docker exec mynotebook jupyter nbextension enable --py --sys-prefix ipysankeywidget
+```
+ 
+
 ### tear down everything
 
 ```bash
