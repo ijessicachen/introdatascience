@@ -87,7 +87,7 @@ and then I'll just manually move the data file there? because I'm not exactly su
 
 **also you may need to add libraries** (don't know how to permanently add them yet) and I just did that from the terminal from the launcher.
 
-*add plotly for 2-7 challenge 2*
+2-7 challenge 2 (plotly, holoviews)
 
 *issues with ipywidgets*
 source: https://github.com/ricklupton/ipysankeywidget/issues/12
