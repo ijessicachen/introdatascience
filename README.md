@@ -7,6 +7,7 @@ mainly from that [microsoft data science for beginners](https://github.com/micro
       - 5 day regression challenge on kaggle
       - scale and normalize data, more practice section
       - assignment
+            - multi bar graph ugh.
 
 **also**
   - skipped 2-6 (for now)
