@@ -2,7 +2,10 @@
 mainly from that [microsoft data science for beginners](https://github.com/microsoft/Data-Science-For-Beginners/tree/main) thing
 
 **currently working on**
-  - time to begin 3-9!!
+  - 3-9
+      - continue challenge
+      - review and self study
+      - assignment
 
 **also**
   - skipped 2-6 (for now)
