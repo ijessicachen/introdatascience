@@ -3,11 +3,11 @@ mainly from that [microsoft data science for beginners](https://github.com/micro
 
 **currently working on**
   - 3-9
-      - continue challenge
       - review and self study
       - assignment
 
 **also**
+  - *please* make your own notes of the pandas syntax because I know I keep on searching about how to do the same things.
   - skipped 2-6 (for now)
   - 2-7
       - feel free at any time to go back to 2-7 assignment part 1 and make it better
