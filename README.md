@@ -1,6 +1,10 @@
 # introdatascience
 mainly from that [microsoft data science for beginners](https://github.com/microsoft/Data-Science-For-Beginners/tree/main) thing
 
+**temporary Sankey solution**<br>
+it's using html<br>
+try [this](https://html-preview.github.io/), adding the url of the html file from git onto the end of it as instructed to preview the .html sankey files.
+
 **currently working on**
   - 3-9
       - assignment
@@ -13,6 +17,7 @@ mainly from that [microsoft data science for beginners](https://github.com/micro
       - feel free at any time to go back to 2-7 assignment part 1 and make it better
       - challenge 2 (which leads into 2-7 assignment part 2)
       - at the very end of 2-7 challenge 2 the sankey diagram isn't showing up, fix that.
+        - might actually make this challenge and the other one directly in kaggle so the dataset can be more easily accessed.
   - 2-8
       - can go back to 2-8 parsing dates to figure out those volcano dates
       - figure out a way so that the R code and stuff actually shows up? idrk what I mean but basically make it so you can see my workspace just like with jupyter notebook.
