@@ -3,7 +3,8 @@ mainly from that [microsoft data science for beginners](https://github.com/micro
 
 **temporary Sankey solution**<br>
 it's using html<br>
-try [this](https://html-preview.github.io/), adding the url of the html file from git onto the end of it as instructed to preview the .html sankey files.
+try [this](https://html-preview.github.io/), adding the url of the html file from git onto the end of it as instructed to preview the .html sankey files.<br>
+hm interesting, plotly shows up in sankey but not in the github image. Maybe I should also do the html thing (in addition to just showing it) on kaggle.
 
 **currently working on**
   - 3-9
