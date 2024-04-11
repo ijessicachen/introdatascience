@@ -24,6 +24,8 @@ hm interesting, plotly shows up in sankey but not in the github image. Maybe I s
       - figure out a way so that the R code and stuff actually shows up? idrk what I mean but basically make it so you can see my workspace just like with jupyter notebook.
       - 5 day regression challenge on kaggle
       - scale and normalize data, more practice section
+  - 3-9
+      - feel free to add colour to the final sankey diagram + expand it
 
 **docker stuff**
   - figure out how to permanently keep the largedata folder and large data in the working environment
