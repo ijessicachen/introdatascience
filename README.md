@@ -7,8 +7,6 @@ try [this](https://html-preview.github.io/), adding the url of the html file fro
 hm interesting, plotly shows up in sankey but not in the github image. Maybe I should also do the html thing (in addition to just showing it) on kaggle.
 
 **currently working on**
-  - 3-9
-      - assignment
 
 **also**
   - *please* make your own notes of the pandas syntax because I know I keep on searching about how to do the same things.
