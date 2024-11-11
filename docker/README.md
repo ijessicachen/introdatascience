@@ -16,7 +16,6 @@ docker compose --help
 ```vim
 %s/rd\/myworkshopca\/DataScienceBasic/touchgrass\/introdatascience/gc
 ```
-
 ## Docker Compose build create and start Jupyter server
 
 Before you do this, make sure docker is running (open the app)
@@ -118,4 +117,7 @@ docker exec mynotebook jupyter nbextension enable --py --sys-prefix ipysankeywid
 ```bash
 # NOTE: this command will remove everything.
 cd ~/touchgrass/introdatascience/docker; docker compose down
+
+# remove all images
+cd ~/touchgrass/introdatascience/docker; docker compose down --rmi all
 ```
