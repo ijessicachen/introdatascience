@@ -61,7 +61,7 @@ cd ~/touchgrass/introdatascience/docker; docker compose logs -f mynotebook
 To save in notebook, use command s or press the save button. <br>
 After saving you can simply commit.
 
-### explore the jupypter container folder structure
+### explore the jupyter container folder structure
 
 We need find the work folder to map to local.
 User: jovyan
