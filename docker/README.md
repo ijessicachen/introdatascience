@@ -1,5 +1,4 @@
 # Use Docker Compose for Local Jupyter Notebook Development
-
 Docker compose will provide an easy and clean development environment for
 Jupyter Notebook.
 
