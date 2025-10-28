@@ -9,6 +9,7 @@ hm interesting, plotly shows up in sankey but not in the github image. Maybe I s
 **currently working on**
 3-10
   - starting the lesson notebook
+schoolgraphs - Thermal Motion Lab
 
 **also**
   - *please* make your own notes of the pandas syntax because I know I keep on searching about how to do the same things.
