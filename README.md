@@ -1,5 +1,13 @@
 # introdatascience
-mainly from that [microsoft data science for beginners](https://github.com/microsoft/Data-Science-For-Beginners/tree/main) thing
+**docker stuff**
+  - figure out how to permanently keep the largedata folder and large data in the working environment
+  - figure out how to permanently install plotly and other relavent libraries.
+
+### Schoolgraphs
+Check out Thermal Motion in UofT\_Y2!
+
+### Microsoft Data Science for Beginners
+The numbered stuff is largely from [microsoft data science for beginners](https://github.com/microsoft/Data-Science-For-Beginners/tree/main) 
 
 **temporary Sankey solution**<br>
 it's using html<br>
@@ -9,7 +17,6 @@ hm interesting, plotly shows up in sankey but not in the github image. Maybe I s
 **currently working on**
 3-10
   - starting the lesson notebook
-schoolgraphs - Thermal Motion Lab
 
 **also**
   - *please* make your own notes of the pandas syntax because I know I keep on searching about how to do the same things.
@@ -27,10 +34,6 @@ schoolgraphs - Thermal Motion Lab
       - scale and normalize data, more practice section
   - 3-9
       - feel free to add colour to the final sankey diagram + expand it
-
-**docker stuff**
-  - figure out how to permanently keep the largedata folder and large data in the working environment
-  - figure out how to permanently install plotly and other relavent libraries.
 
 ### permanently remove file from git
 ```bash
