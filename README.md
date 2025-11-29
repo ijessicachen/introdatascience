@@ -4,7 +4,7 @@
   - figure out how to permanently install plotly and other relavent libraries.
 
 ### Schoolgraphs
-Check out Thermal Motion in UofT\_Y2!
+Check out [Thermal Motion](https://github.com/ijessicachen/introdatascience/blob/main/schoolgraphs/UofT_Y2/PHY293_ThermalMotion/analysis_FINAL.ipynb) for some data analysis in Python!
 
 ### Microsoft Data Science for Beginners
 The numbered stuff is largely from [microsoft data science for beginners](https://github.com/microsoft/Data-Science-For-Beginners/tree/main) 
