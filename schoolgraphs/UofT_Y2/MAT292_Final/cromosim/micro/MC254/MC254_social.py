@@ -54,7 +54,8 @@ with open(opt.jsonfilename) as json_file:
         sys.exit()
 
 """
-    Get parameters from json file : """
+    Get parameters from json file : 
+"""
 
 prefix = input["prefix"]
 if not os.path.exists(prefix):
@@ -107,6 +108,12 @@ print("===> ONLY used during initialization ! Minimal distance between a \
 """
 domains = {}
 domains['MC254'] = dom
+
+print("===> Domain : ", domains["MC254"])
+if (with_graphes):
+    dom.plot(id=0)
+    dom.plot_wall_dist(id=1, step=20)
+
 print("===> All domains = ", domains)
 
 """
@@ -207,6 +214,9 @@ while (t < Tf):
             xyrv = people["xyrv"]
             Vd = people["Vd"]
             Uold = people["Uold"]
+
+        # print x, y, radius, velocity of people
+        #print(xyrv)
 
         if (xyrv.shape[0] > 0):
 

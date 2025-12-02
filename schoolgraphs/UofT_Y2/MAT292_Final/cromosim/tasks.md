@@ -24,7 +24,8 @@ Main tasks in `json` file
     - May have to change the destination to past the door not at the door. As a byproduct may need to expand the domain into the hallway too
     - Also figure out if you can make it so once a certain number of people reaches a destination that no longer becomes a destination so it can accurately simulate people going to different rows
 - Make the `people` group things
-    - where they start (might need to customize this module)
+    - group moving in
+        - randomly scattered in the hall
 - Make the `sensors`
     - prob at doors, maybe in the hall too, make them visible (green or something)
 
@@ -33,6 +34,5 @@ Main tasks in main `py` file
 - Modify forces to work with our model (Hopf Bifurcation, Density-Dependent)
 
 Main tasks for visualization
-- Combine result images into a gif --> add this to the main `py` file?
 - Maybe modify sensor graphs if you want something more specific but they seem fine tbh
 
