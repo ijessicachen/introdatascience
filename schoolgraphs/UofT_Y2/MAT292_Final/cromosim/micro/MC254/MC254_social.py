@@ -30,7 +30,8 @@ from cromosim.micro import people_initialization, plot_people, plot_sensors
 from cromosim.micro import find_duplicate_people, compute_contacts
 from cromosim.micro import compute_forces, move_people, people_update_destination
 
-from MC254_domain import dom
+# domain with hall
+from MC254hall_domain import dom
 
 plt.ion()
 
@@ -107,9 +108,9 @@ print("===> ONLY used during initialization ! Minimal distance between a \
     - bring in from another Python file (really questionable rn)
 """
 domains = {}
-domains['MC254'] = dom
+domains['MC254hall'] = dom
 
-print("===> Domain : ", domains["MC254"])
+print("===> Domain : ", domains["MC254hall"])
 if (with_graphes):
     dom.plot(id=0)
     dom.plot_wall_dist(id=1, step=20)

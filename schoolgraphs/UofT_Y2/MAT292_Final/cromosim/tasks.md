@@ -20,14 +20,19 @@ Main tasks in `json` file
     - `input_room.json`: has an obstacle and 2 exits
     - `input_stairs.json`: 2 groups going in opposing directions in a confined space
     - experiment with their other values (kappa, delta, etc.)
-- Make `domain(s)`
-    - May have to change the destination to past the door not at the door. As a byproduct may need to expand the domain into the hallway too
-    - Also figure out if you can make it so once a certain number of people reaches a destination that no longer becomes a destination so it can accurately simulate people going to different rows
 - Make the `people` group things
+    - make sure to shift the groups starting inside the hall by x=100pixels right in order to have them start in the right boxes for the new image
     - group moving in
         - randomly scattered in the hall
 - Make the `sensors`
     - prob at doors, maybe in the hall too, make them visible (green or something)
+
+Make tasks for domain `py` file
+- REDO DOMAIN TO ACCOUNT FOR SHIFT TO INCLUDE HALL
+    - shift 
+    - include hall (take dimensions from photos)
+- New destinations!!!
+- Also figure out if you can make it so once a certain number of people reaches a destination that no longer becomes a destination so it can accurately simulate people going to different rows
 
 Main tasks in main `py` file
 - Load domains directly from Python, load everything else from json file
