@@ -10,33 +10,28 @@ Quick links
 - Slight more detailed Social Force Model [documentation](https://www.cromosim.fr/example_micro.html)
 
 Main steps
-- make domain only of room and run simple social force model out of doors
 - make domain of room and hallway and run social force model for a group moving in and a group moving out
 - add to previous one with Density-Dependent
 - if you have time, add to previous one with Hopf Bifurcation
  
 Main tasks in `json` file
-- Take more time to look through
-    - `input_room.json`: has an obstacle and 2 exits
-    - `input_stairs.json`: 2 groups going in opposing directions in a confined space
-    - experiment with their other values (kappa, delta, etc.)
+- experiment with their other values (kappa, delta, etc.)
 - Make the `people` group things
-    - make sure to shift the groups starting inside the hall by x=100pixels right in order to have them start in the right boxes for the new image
     - group moving in
         - randomly scattered in the hall
-- Make the `sensors`
-    - prob at doors, maybe in the hall too, make them visible (green or something)
+        - you probably have to make something like 6 groups of 5, randomly scattered, that each have their own destination in a row
+    - fix the door issue (too many people using the top door, does not reflect real behaviour)
+        - change the groups so only some can use the top door (make another object there at onley some can go through using the `excluded_colors` feature)
+- add more sensors if you want
 
 Make tasks for domain `py` file
-- REDO DOMAIN TO ACCOUNT FOR SHIFT TO INCLUDE HALL
-    - shift 
-    - include hall (take dimensions from photos)
 - New destinations!!!
 - Also figure out if you can make it so once a certain number of people reaches a destination that no longer becomes a destination so it can accurately simulate people going to different rows
+    - possible solution in the works by adjusting the groups in the `json` file (see notes above about the tasks in the `json` file for more info)
+- refine the colours for different groups
 
 Main tasks in main `py` file
-- Load domains directly from Python, load everything else from json file
-- Modify forces to work with our model (Hopf Bifurcation, Density-Dependent)
+- Modify forces to work with altered models (Hopf Bifurcation, Density-Dependent)
 
 Main tasks for visualization
 - Maybe modify sensor graphs if you want something more specific but they seem fine tbh

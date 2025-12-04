@@ -13,7 +13,7 @@
 # Remember to first install cromosim:
 #      pip install cromosim
 # Launch Command:
-#      python MC254_social.py --json input_MC254.json
+#      python MC254_social.py --json input_MC254hall.json
 
 import sys
 import os
@@ -158,6 +158,7 @@ for i, peopledom in enumerate(json_people_init):
         people["paths"][pid] = people["xyrv"][ip, :2]
     contacts = None
     if (with_graphes):
+        # colors don't really matter rn bc adjusted in the main loop
         colors = people["xyrv"][:, 2]
         plot_people(100*i+20, dom, people, contacts, colors, time=t,
                     plot_people=plot_p, plot_contacts=plot_c,
@@ -246,12 +247,16 @@ while (t < Tf):
 
         if (draw and with_graphes):
             # coloring people according to their radius
-            colors = all_people[name]["xyrv"][:, 2]
+            #colors = all_people[name]["xyrv"][:, 2]
+
             # coloring people according to their destinations
-            # colors = np.zeros(all_people[name]["xyrv"].shape[0])
-            # for i,dest_name in enumerate(all_people[name]["destinations"]):
-            #     ind = np.where(all_people[name]["destinations"]==dest_name)[0]
-            #     colors[ind]=i
+            # alter here to make everyone moving in shades of 1 colour,
+            #   and everyone moving out shades of another colour
+            colors = np.zeros(all_people[name]["xyrv"].shape[0])
+            for i,dest_name in enumerate(all_people[name]["destinations"]):
+                ind = np.where(all_people[name]["destinations"]==dest_name)[0]
+                colors[ind]=i
+
             plot_people(100*idom+20, dom, all_people[name], contacts,
                         colors, virtual_people=virtual_people[name], time=t,
                         plot_people=plot_p, plot_contacts=plot_c,

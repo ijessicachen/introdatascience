@@ -10,28 +10,27 @@ basically just the json file with comments bc I'm tweaking out at the lack of co
           "nb": 10,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
-          "box": [8.04,13.88,6.87,9.90],
+          "box": [8.04,13.88,4.0,7.94],
           "destination": "door"
         },
         {
           "nb": 10,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
-          "box": [8.04,13.88,10.96,13.26],
+          "box": [8.04,13.88,9.0,13.0],
           "destination": "door"
         },
         {
           "nb": 5,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
-          "box": [14.18,17.96,6.87,9.90],
+          "box": [14.18,17.96,4.9,7.94],
           "destination": "door"
         },
         {
           "nb": 5,
           "radius_distribution": ["uniform",0.14,0.16],
-          "velocity_distribution": ["normal",1.4,0.4],
-          "box": [14.18,19.05,10.96,13.26],
+          "velocity_distribution": ["normal",1.4,0.4], "box": [14.18,19.05,9.0,13.0],
           "destination": "door"
         }
       ]
@@ -40,8 +39,8 @@ basically just the json file with comments bc I'm tweaking out at the lack of co
   "sensors":[
     {
       "name": "sensor1",
-      "domain": "MC254",
-      "line": [4.83,7.01,4.83,7.94]
+      "domain": "MC254hall",
+      "line": [4.83,5.15,4.83,6.05] 
     },
     {
       "name": "sensor2",
@@ -54,7 +53,7 @@ basically just the json file with comments bc I'm tweaking out at the lack of co
       "line": [5.79,7.90,5.79,9.10]
     }
   ],
-  "prefix":"norm_MC254-hall_results/",
+  "prefix":"norm_MC254hall_results/",
   "seed":40,
   "with_graphes": true,
   "Tf":50.0,
