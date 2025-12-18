@@ -22,7 +22,7 @@ from cromosim.domain import Domain
 from cromosim.domain import Destination
 
 # To create a Domain object from a background image
-scale = 2/102 # not sure if necessary but might come in handy later?
+scale = 2/102 
 dom = Domain(name='MC254hall', background='MC254hall.png', pixel_size=scale)
 
 # OBJECTS ---------------------------------------
@@ -143,56 +143,30 @@ dom.add_shape(rect, outline_color=wall_color, fill_color=wall_color)
 # - might need to stop grouping multiple aisles if they 
 #   just go to the closest one
 
-#     Line2D(xdata, ydata, linewidth)
-aisle12_color = [255, 0, 255]
-# 1st row, bottom
-line = Line2D([414*scale, (414+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle12_color, fill_color=aisle12_color)
-# 2nd row, bottom
-line = Line2D([459*scale, (459+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle12_color, fill_color=aisle12_color)
-# 1st row, top
-line = Line2D([414*scale, (414+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle12_color, fill_color=aisle12_color)
-# 2nd row, top
-line = Line2D([459*scale, (459+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle12_color, fill_color=aisle12_color)
+# first 7 aisles
+n = 7
+aisle_colors = [ [0]*3 for i in range(n)]
+for i in range(0, n):
+    col = [255, 0, 255-i*25]
+    aisle_colors[i] = col
+#print(aisle_colors)
+for i in range(0, n):
+    #     Line2D(xdata, ydata, linewidth)
+    # bottom
+    line = Line2D([(414+45*i)*scale, (414+26+45*i)*scale], [363*scale, 363*scale], linewidth=2)
+    dom.add_shape(line, outline_color=aisle_colors[i], fill_color=aisle_colors[i])
+    # top
+    line = Line2D([(414+45*i)*scale, (414+26+45*i)*scale], [516*scale, 516*scale], linewidth=2)
+    dom.add_shape(line, outline_color=aisle_colors[i], fill_color=aisle_colors[i])
 
-#     Line2D(xdata, ydata, linewidth)
-aisle34_color = [255, 0, 205]
-# 3rd row, bottom
-line = Line2D([504*scale, (504+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle34_color, fill_color=aisle34_color)
-# 4th row, bottom
-line = Line2D([549*scale, (549+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle34_color, fill_color=aisle34_color)
-# 3rd row, top
-line = Line2D([504*scale, (504+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle34_color, fill_color=aisle34_color)
-# 4th row, top
-line = Line2D([549*scale, (549+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle34_color, fill_color=aisle34_color)
-
-#     Line2D(xdata, ydata, linewidth)
-aisle567_color = [255, 0, 155]
-# 5th row, bottom
-line = Line2D([594*scale, (594+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle567_color, fill_color=aisle567_color)
-# 6th row, bottom
-line = Line2D([639*scale, (639+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle567_color, fill_color=aisle567_color)
-# 7th row, bottom
-line = Line2D([684*scale, (684+26)*scale], [395*scale, 395*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle567_color, fill_color=aisle567_color)
-# 5th row, top
-line = Line2D([594*scale, (594+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle567_color, fill_color=aisle567_color)
-# 6th row, top
-line = Line2D([639*scale, (639+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle567_color, fill_color=aisle567_color)
-# 7th row, top
-line = Line2D([684*scale, (684+26)*scale], [486*scale, 486*scale], linewidth=2)
-dom.add_shape(line, outline_color=aisle567_color, fill_color=aisle567_color)
+# 10th aisle (index 9) to represent the last few aisles
+aisle_colors.append([255, 0, 105-25*3])
+# bottom
+line = Line2D([(414+45*9)*scale, (414+26+45*9)*scale], [363*scale, 363*scale], linewidth=2)
+dom.add_shape(line, outline_color=aisle_colors[7], fill_color=aisle_colors[7])
+# top
+line = Line2D([(414+45*9)*scale, (414+26+45*9)*scale], [516*scale, 516*scale], linewidth=2)
+dom.add_shape(line, outline_color=aisle_colors[7], fill_color=aisle_colors[7])
 
 # ~~~~~
 
@@ -209,27 +183,19 @@ dom.plot(id=1, title="Domain")
 
 # hallway doors
 dest = Destination(name='door', colors=[door_color],
-                                      excluded_colors=[wall_color])
+                   excluded_colors=[wall_color])
 dom.add_destination(dest)
 
-# aisles 1, 2
-dest = Destination(name='a12', colors=[aisle12_color],
-                                      excluded_colors=[wall_color])
+# aisles index 0-7
+for i in range(0, n):
+    d = "a" + str(i+1)
+    dest = Destination(name=d, colors=[aisle_colors[i]],
+                       excluded_colors=[wall_color])
+    dom.add_destination(dest)
+# aisle index 9
+dest = Destination(name='a10', colors=[aisle_colors[7]],
+                   excluded_colors=[wall_color])
 dom.add_destination(dest)
 
 # ~~~~~
 
-# To plot the wall distance and its gradient
-dom.plot_wall_dist(id=2, step=20,
-                   title="Distance to walls and its gradient",
-                   savefig=False, filename="mc254_wall_distance.png")
-
-# To plot the distance to the red door and the correspondant
-# desired velocity
-dom.plot_desired_velocity('door', id=3, step=20,
-                          title="Distance to the destination and desired velocity",
-                          savefig=False, filename="mc254_desired_velocity.png")
-
-print("===> Domain: ", dom)
-
-plt.show()

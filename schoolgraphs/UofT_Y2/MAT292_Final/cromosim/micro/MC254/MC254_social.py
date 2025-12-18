@@ -35,9 +35,6 @@ from MC254hall_domain import dom
 
 plt.ion()
 
-"""
-    python micro_social.py --json input.json
-"""
 parser = OptionParser(usage="usage: %prog [options] filename", version="%prog 1.0")
 parser.add_option('--json', dest="jsonfilename", default="input.json",
                   type="string",
@@ -229,10 +226,14 @@ while (t < Tf):
                 print("             individuals and this is not normal.")
                 sys.exit()
 
-            contacts = compute_contacts(dom, xyrv, dmax)
+            contacts = compute_contacts(dom, xyrv, dmax) 
             print("     Number of contacts: ", contacts.shape[0])
+
+            # NOTE make your own function to compute forces, changes
+            # for our model would be made here
             Forces = compute_forces(F, Fwall, xyrv, contacts, Uold, Vd,
                                     lambda_, delta, kappa, eta)
+
             nn = people["xyrv"].shape[0]
             all_people[name]["U"] = dt*(Vd[:nn, :]-Uold[:nn, :])/tau +\
                 Uold[:nn, :] + dt*Forces[:nn, :]/mass

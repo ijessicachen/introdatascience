@@ -7,7 +7,7 @@
           "nb": 10,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
-          "box": [8.04,13.88,4.1,7.94],
+          "box": [8.04,13.88,4.3,7.94],
           "destination": "door"
         },
         {
@@ -33,12 +33,34 @@
         },
 
         {
-          "nb": 10,
+          "nb": 3,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [1.18,4.8,3.5,11.0],
-          "destination": "a12"
+          "destination": "a1"
+        },
+        {
+          "nb": 5,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a2"
+        },
+        {
+          "nb": 5,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a3"
+        },
+        {
+          "nb": 8,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a4"
         }
+
       ]
     }
   ],
@@ -62,19 +84,19 @@
   "prefix":"test_results/",
   "seed":30,
   "with_graphes": true,
-  "Tf":80.0,
+  "Tf":100.0,
   "dt":0.005,
   "drawper":200,
   "mass":80.0,
   "tau":0.5,
-  "F":2000.0,
+  "F":800.0,
   "kappa":120000.0,
   "delta":0.08,
-  "Fwall":2000.0,
+  "Fwall":800.0,
   "lambda":0.5,
   "eta":240000.0,
   "projection_method": "cvxopt",
-  "dmax":0.3,
+  "dmax":0.2,
   "dmin_people":0.0,
   "dmin_walls":0.2,
   "plot_people":true,
