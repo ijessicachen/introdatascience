@@ -36,3 +36,6 @@ Main tasks in main `py` file
 Main tasks for visualization
 - Maybe modify sensor graphs if you want something more specific but they seem fine tbh
 
+## Other Notes
+
+I am aware you can properly change the documentation if you install, but since I only figured out how to install it on Jupyter Notebook we are instead making copies of methods and altering those instead as this is the best way I could come up with to change the docs for what we are doing.

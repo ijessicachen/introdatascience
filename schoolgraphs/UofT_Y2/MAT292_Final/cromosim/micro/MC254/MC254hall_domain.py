@@ -21,6 +21,9 @@ from matplotlib.patches import Rectangle
 from cromosim.domain import Domain
 from cromosim.domain import Destination
 
+# altered docs
+#from domain_dd import Domain
+
 # To create a Domain object from a background image
 scale = 2/102 
 dom = Domain(name='MC254hall', background='MC254hall.png', pixel_size=scale)
@@ -136,6 +139,24 @@ dom.add_shape(rect, outline_color=wall_color, fill_color=wall_color)
 
 # ~~~~
 
+# block the top door for most people moving out ~~~~~~
+limited = [0, 0, 255]
+#     Line2D(xdata, ydata, linewidth)
+line = Line2D([4.83+3*scale, 4.83+3*scale], [11.71, 12.61], linewidth=2)
+dom.add_shape(line, outline_color=limited, fill_color=limited)
+
+# second door objects for this separate group
+door_color2 = [0, 255, 255]
+
+#     Line2D(xdata, ydata, linewidth)
+line = Line2D([(153-7+100-7)*scale-((0.27/693)*341 + 0.75 + (671.9/1591.5)*0.422)+(6*scale)-(75/346)-(4277/5536), (153-7+100-7)*scale-((0.27/693)*341 + 0.75 + (671.9/1591.5)*0.422)+(6*scale)-(75/346)], [(248-6+24+45+288+45+15)*scale-(220/280551)*2546.9+3*scale+1*scale, (248-6+24+45+288+45+15)*scale-(220/280551)*2546.9+3*scale+1*scale], linewidth=2)
+dom.add_shape(line, outline_color=door_color2, fill_color=door_color2)
+
+line = Line2D([(153-7+100-7)*scale-((0.27/693)*341 + 0.75 + (671.9/1591.5)*0.422)+(6*scale)-(75/346)-2*(4277/5536)-(35/692), (153-7+100-7)*scale-((0.27/693)*341 + 0.75 + (671.9/1591.5)*0.422)+(6*scale)-(75/346)-(4277/5536)-(35/692)], [(248-6+24+45+288+45+15)*scale-(220/280551)*2546.9+3*scale+1*scale, (248-6+24+45+288+45+15)*scale-(220/280551)*2546.9+3*scale+1*scale], linewidth=2)
+dom.add_shape(line, outline_color=door_color2, fill_color=door_color2)
+
+# ~~~~
+
 # more destinations in aisles ~~~~~
 # POSSIBLE CHANGES
 # - might need to split between top and bottom if they 
@@ -184,6 +205,10 @@ dom.plot(id=1, title="Domain")
 # hallway doors
 dest = Destination(name='door', colors=[door_color],
                    excluded_colors=[wall_color])
+dom.add_destination(dest)
+# hallway doors w/ top door excluded
+dest = Destination(name='door2', colors=[door_color2],
+                   excluded_colors=[wall_color, limited])
 dom.add_destination(dest)
 
 # aisles index 0-7

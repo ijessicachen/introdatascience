@@ -14,4 +14,4 @@ frames.pop()
 frames[0].save('test.gif', format='GIF',
                append_images=frames[1:],
                save_all=True,
-               duration=250, loop=0)
+               duration=500, loop=0)

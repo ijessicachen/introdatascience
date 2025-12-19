@@ -4,61 +4,121 @@
       "domain": "MC254hall",
       "groups": [
         {
-          "nb": 10,
+          "nb": 8,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [8.04,13.88,4.5,7.94],
+          "destination": "door2"
+        },
+        {
+          "nb": 2,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [8.04,13.88,4.3,7.94],
           "destination": "door"
         },
+
         {
-          "nb": 10,
+          "nb": 8,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [8.04,13.88,9.0,13.0],
+          "destination": "door2"
+        },
+        {
+          "nb": 2,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [8.04,13.88,9.0,13.0],
           "destination": "door"
         },
+
         {
-          "nb": 5,
+          "nb": 4,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [14.18,17.96,4.9,7.94],
+          "destination": "door2"
+        },
+        {
+          "nb": 1,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [14.18,17.96,4.9,7.94],
           "destination": "door"
         },
+
         {
-          "nb": 5,
+          "nb": 4,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [14.18,19.05,9.0,13.0],
+          "destination": "door2"
+        },
+        {
+          "nb": 1,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [14.18,19.05,9.0,13.0],
           "destination": "door"
         },
 
+
         {
-          "nb": 3,
+          "nb": 2,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [1.18,4.8,3.5,11.0],
           "destination": "a1"
         },
         {
-          "nb": 5,
+          "nb": 3,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [1.18,4.8,3.5,11.0],
           "destination": "a2"
         },
         {
-          "nb": 5,
+          "nb": 3,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [1.18,4.8,3.5,11.0],
           "destination": "a3"
         },
         {
-          "nb": 8,
+          "nb": 5,
           "radius_distribution": ["uniform",0.14,0.16],
           "velocity_distribution": ["normal",1.4,0.4],
           "box": [1.18,4.8,3.5,11.0],
           "destination": "a4"
+        },
+        {
+          "nb": 8,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a5"
+        },
+        {
+          "nb": 8,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a6"
+        },
+        {
+          "nb": 3,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a7"
+        },
+        {
+          "nb": 2,
+          "radius_distribution": ["uniform",0.14,0.16],
+          "velocity_distribution": ["normal",1.4,0.4],
+          "box": [1.18,4.8,3.5,11.0],
+          "destination": "a10"
         }
 
       ]
@@ -81,24 +141,24 @@
       "line": [7.83,8.01,7.83,9.11]
     }
   ],
-  "prefix":"test_results/",
+  "prefix":"norm_results/",
   "seed":30,
   "with_graphes": true,
-  "Tf":100.0,
+  "Tf":170.00,
   "dt":0.005,
   "drawper":200,
   "mass":80.0,
   "tau":0.5,
-  "F":800.0,
+  "F":300.0,
   "kappa":120000.0,
   "delta":0.08,
-  "Fwall":800.0,
+  "Fwall":300.0,
   "lambda":0.5,
   "eta":240000.0,
   "projection_method": "cvxopt",
-  "dmax":0.2,
+  "dmax":0.17,
   "dmin_people":0.0,
-  "dmin_walls":0.2,
+  "dmin_walls":0.0,
   "plot_people":true,
   "plot_contacts":true,
   "plot_desired_velocities":false,

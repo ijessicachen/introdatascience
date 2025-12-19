@@ -26,9 +26,13 @@ from matplotlib.lines import Line2D
 
 from cromosim.domain import Domain
 from cromosim.domain import Destination
-from cromosim.micro import people_initialization, plot_people, plot_sensors
+from cromosim.micro import people_initialization
+from cromosim.micro import plot_people, plot_sensors
 from cromosim.micro import find_duplicate_people, compute_contacts
 from cromosim.micro import compute_forces, move_people, people_update_destination
+
+# altered docs - density dependent
+#from domain_dd import Domain
 
 # domain with hall
 from MC254hall_domain import dom
@@ -144,16 +148,20 @@ for i, peopledom in enumerate(json_people_init):
     groups = peopledom["groups"]
     print("===> Group number ", i, ", domain = ", peopledom["domain"])
     people = people_initialization(
-        dom, groups, dt,
+        dom, groups, dt, 
         dmin_people=dmin_people, dmin_walls=dmin_walls, seed=seed,
         itermax=10, projection_method=projection_method, verbose=True)
+
+    # NOTE prob also alter this to tackle Vd? 
+    contacts = None # if it worked for plot_people(), this should be find too
     I, J, Vd = dom.people_desired_velocity(
         people["xyrv"],
-        people["destinations"])
+        people["destinations"],
+        contacts)
     people["Vd"] = Vd
     for ip, pid in enumerate(people["id"]):
         people["paths"][pid] = people["xyrv"][ip, :2]
-    contacts = None
+    #contacts = None # moved up
     if (with_graphes):
         # colors don't really matter rn bc adjusted in the main loop
         colors = people["xyrv"][:, 2]
@@ -180,13 +188,17 @@ while (t < Tf):
     print("\n===> Time = "+str(t))
 
     # Compute people desired velocity
+    # shifting this down, we'll see how it goes
     for idom, name in enumerate(domains):
         print("===> Compute desired velocity for domain ", name)
         dom = domains[name]
         people = all_people[name]
+        # NOTE change this for density-dependent
+        contacts = None # for now
         I, J, Vd = dom.people_desired_velocity(
             people["xyrv"],
-            people["destinations"])
+            people["destinations"],
+            contacts)
         people["Vd"] = Vd
         people["I"] = I
         people["J"] = J
@@ -229,12 +241,40 @@ while (t < Tf):
             contacts = compute_contacts(dom, xyrv, dmax) 
             print("     Number of contacts: ", contacts.shape[0])
 
-            # NOTE make your own function to compute forces, changes
-            # for our model would be made here
+            # copied from above because we need contacts 
+            #   for the calculation now
+            # calculate desired velocities
+            print("===> Compute desired velocity for domain ", name)
+            dom = domains[name]
+            people = all_people[name]
+            I, J, Vd = dom.people_desired_velocity(
+                people["xyrv"],
+                people["destinations"],
+                contacts)
+            people["Vd"] = Vd
+            people["I"] = I
+            people["J"] = J
+
+            try:
+                xyrv = np.concatenate(
+                    (people["xyrv"], virtual_people[name]["xyrv"]))
+                Vd = np.concatenate(
+                    (people["Vd"], virtual_people[name]["Vd"]))
+                Uold = np.concatenate(
+                    (people["Uold"], virtual_people[name]["Uold"]))
+            except:
+                xyrv = people["xyrv"]
+                Vd = people["Vd"]
+                Uold = people["Uold"]
+
+
+            # calculates f_social and f_wall, need not alter for our changes
             Forces = compute_forces(F, Fwall, xyrv, contacts, Uold, Vd,
                                     lambda_, delta, kappa, eta)
 
             nn = people["xyrv"].shape[0]
+            # NOTE edit this Vd - Uold actually!!
+            # - prob for both all_people and virtual_people
             all_people[name]["U"] = dt*(Vd[:nn, :]-Uold[:nn, :])/tau +\
                 Uold[:nn, :] + dt*Forces[:nn, :]/mass
             # only for the plot of virtual people :
