@@ -152,16 +152,13 @@ for i, peopledom in enumerate(json_people_init):
         dmin_people=dmin_people, dmin_walls=dmin_walls, seed=seed,
         itermax=10, projection_method=projection_method, verbose=True)
 
-    # NOTE prob also alter this to tackle Vd? 
-    contacts = None # if it worked for plot_people(), this should be find too
     I, J, Vd = dom.people_desired_velocity(
         people["xyrv"],
-        people["destinations"],
-        contacts)
+        people["destinations"])
     people["Vd"] = Vd
     for ip, pid in enumerate(people["id"]):
         people["paths"][pid] = people["xyrv"][ip, :2]
-    #contacts = None # moved up
+    contacts = None
     if (with_graphes):
         # colors don't really matter rn bc adjusted in the main loop
         colors = people["xyrv"][:, 2]
@@ -193,12 +190,9 @@ while (t < Tf):
         print("===> Compute desired velocity for domain ", name)
         dom = domains[name]
         people = all_people[name]
-        # NOTE change this for density-dependent
-        contacts = None # for now
         I, J, Vd = dom.people_desired_velocity(
             people["xyrv"],
-            people["destinations"],
-            contacts)
+            people["destinations"])
         people["Vd"] = Vd
         people["I"] = I
         people["J"] = J
@@ -240,33 +234,6 @@ while (t < Tf):
 
             contacts = compute_contacts(dom, xyrv, dmax) 
             print("     Number of contacts: ", contacts.shape[0])
-
-            # copied from above because we need contacts 
-            #   for the calculation now
-            # calculate desired velocities
-            print("===> Compute desired velocity for domain ", name)
-            dom = domains[name]
-            people = all_people[name]
-            I, J, Vd = dom.people_desired_velocity(
-                people["xyrv"],
-                people["destinations"],
-                contacts)
-            people["Vd"] = Vd
-            people["I"] = I
-            people["J"] = J
-
-            try:
-                xyrv = np.concatenate(
-                    (people["xyrv"], virtual_people[name]["xyrv"]))
-                Vd = np.concatenate(
-                    (people["Vd"], virtual_people[name]["Vd"]))
-                Uold = np.concatenate(
-                    (people["Uold"], virtual_people[name]["Uold"]))
-            except:
-                xyrv = people["xyrv"]
-                Vd = people["Vd"]
-                Uold = people["Uold"]
-
 
             # calculates f_social and f_wall, need not alter for our changes
             Forces = compute_forces(F, Fwall, xyrv, contacts, Uold, Vd,

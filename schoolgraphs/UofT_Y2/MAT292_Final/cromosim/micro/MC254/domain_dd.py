@@ -617,7 +617,7 @@ class Domain():
 
             # e a roe term
             # a = 0 is normal SFM
-            a = 0.7 
+            a = 0.7
             for i in range(0, ind.shape[0]):
                 # limits for if the density is too large
                 if (ld[ind[i], 0] > 1):
