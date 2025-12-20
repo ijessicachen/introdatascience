@@ -3,8 +3,21 @@
 #     Bertrand Maury <bertrand.maury@universite-paris-saclay.fr>
 # License: GPL
 # 
-# Modified by:
-#     Jessica Chen <jessi.chen@mail.utoronto.ca>
+
+"""
+Modified by Jessica Chen
+    Jessica Chen <jessi.chen@mail.utoronto.ca>
+
+Modify the people_desired_velocity() method to
+use our density-dependent model.
+
+KEY NOTES
+- If you try seeds other than the ones we have
+  given as examples, a (currently a=0.7) in 
+  people_desired_velocity() may need to be 
+  altered along with other parameters from 
+  the `input_MC254hall.json`
+"""
 
 import numpy as np
 import scipy as sp
@@ -542,7 +555,8 @@ class Domain():
     # THIS IS CHANGED
     def people_desired_velocity(self, xyr, people_dest, II=None, JJ=None):
         """This function determines people desired velocities from the desired \
-        velocity array computed by Domain thanks to a fast-marching method.
+        velocity array computed by Domain thanks to a fast-marching method and \
+        our own density dependent model.
 
         Parameters
         ----------
@@ -579,20 +593,16 @@ class Domain():
             # - array of the people going to that destination
             # - Ex. size 3 array for 3 people going to a1
             ind = np.where(np.array(people_dest) == dest_name)[0]
-
             scale = self.destinations[dest_name].velocity_scale
+
             # original desired velocity, will be used as V0
             Vd[ind, 0] = xyr[ind, 3]*scale*self.destinations[dest_name].desired_velocity_X[II[ind], JJ[ind]]
             Vd[ind, 1] = xyr[ind, 3]*scale*self.destinations[dest_name].desired_velocity_Y[II[ind], JJ[ind]]
 
-            # calculate term with local density
-            # - will not do alla that if only initializing
-            #   (hence the conditional)
-            # - pls don't break pls don't break
-
             # whether to apply density-dependent
             dd = [ [True]*2 for i in range(ind.shape[0]) ]
 
+            # dx and dy
             xi, yi = xyr[ind, 0], xyr[ind, 1]
             #print("dest_name", dest_name)
             #print("ind", ind)
@@ -600,7 +610,6 @@ class Domain():
             #print("xi", xi)
             X = xyr[:, 0]
             Y = xyr[:, 1]
-
             dx = np.zeros((xi.shape[0], X.shape[0]))
             dy = np.zeros((yi.shape[0], Y.shape[0]))
             for i in range(0, ind.shape[0]):
@@ -620,16 +629,23 @@ class Domain():
             a = 0.7
             for i in range(0, ind.shape[0]):
                 # limits for if the density is too large
+                # - people move too slow in that case
                 if (ld[ind[i], 0] > 1):
                     dd[i][0] = False
                 else:
+                    # indicator density-dependent desired
+                    #   vecloity is being used
                     print("good roe_x", ld[ind[i], 0])
+                    print("-> Vd_x", Vd[ind[i], 0])
                     ld[ind[i],0] = np.exp(-a*ld[ind[i], 0])
 
                 if (ld[ind[i], 1] > 1):
                     dd[i][1] = False
                 else:
+                    # indicator density-dependent desired
+                    #   vecloity is being used
                     print("good roe_y", ld[ind[i], 1])
+                    print("-> Vd_y", Vd[ind[i], 1])
                     ld[ind[i],1] = np.exp(-a*ld[ind[i], 1])
 
             for i in range(0, ind.shape[0]):

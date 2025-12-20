@@ -7,13 +7,40 @@
 #
 # License: GPL
 #
-# Modified by: 
-#      Jessica Chen <jessi.chen@mail.utoronto.ca>
-# 
-# Remember to first install cromosim:
-#      pip install cromosim
-# Launch Command:
-#      python MC254_social.py --json input_MC254hall.json
+
+"""
+Modified by: 
+     Jessica Chen <jessi.chen@mail.utoronto.ca>
+
+Remember to first install cromosim:
+     pip install cromosim
+Launch Command:
+     python MC254_social.py --json input_MC254hall.json
+
+Run a simulation using the social force model or our
+density-dependent social force model with domain
+information from `MC254hall_domain.py` and other
+information from `input_MC254hall.json`.
+
+KEY NOTES
+- always use the altered docs for this file because 
+  the labels will always be plotted
+
+- the docs used in `MC254hall_domain.py` are 
+  important because we are taking the domain 
+  from there
+- use the og docs from `MC254hall_domain.py` 
+  for normal Social Force Model
+- use the altered docs from  `MC254hall_domain.py` 
+  for our density-dependent Social Force Model
+
+- between simulations, this file does not change much. 
+  Changes should be made in `input_MC254hall.json`
+  and/or `domain_dd.py`
+- Changes can be made in this file to track the 
+  velocities of different agents by specifying 
+  those agents in the agents numpy array.
+"""
 
 import sys
 import os
@@ -23,16 +50,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Ellipse, Rectangle, Polygon
 from matplotlib.lines import Line2D
+from matplotlib.collections import EllipseCollection
 
-from cromosim.domain import Domain
-from cromosim.domain import Destination
 from cromosim.micro import people_initialization
-from cromosim.micro import plot_people, plot_sensors
+from cromosim.micro import plot_sensors
 from cromosim.micro import find_duplicate_people, compute_contacts
 from cromosim.micro import compute_forces, move_people, people_update_destination
 
-# altered docs - density dependent
-#from domain_dd import Domain
+# og docs - normal people plotting
+#from cromosim.micro import plot_people
+# altered docs - also plot people we track
+#   velocities for with labels
+from micro_edits import plot_people
 
 # domain with hall
 from MC254hall_domain import dom
@@ -143,6 +172,10 @@ counter = 0
 
 # Initialize people
 all_people = {}
+
+# agents of interest (for velocities)
+agents = np.array([0, 10, 60])
+
 for i, peopledom in enumerate(json_people_init):
     dom = domains[peopledom["domain"]]
     groups = peopledom["groups"]
@@ -159,6 +192,7 @@ for i, peopledom in enumerate(json_people_init):
     for ip, pid in enumerate(people["id"]):
         people["paths"][pid] = people["xyrv"][ip, :2]
     contacts = None
+
     if (with_graphes):
         # colors don't really matter rn bc adjusted in the main loop
         colors = people["xyrv"][:, 2]
@@ -168,6 +202,31 @@ for i, peopledom in enumerate(json_people_init):
                     plot_sensors=plot_s, sensors=all_sensors[dom.name],
                     savefig=True, filename=prefix+dom.name+'_fig_' +
                     str(counter).zfill(6)+'.png')
+
+        # agents.png plot for the agents for which 
+        #  velocity will be graphed
+        plot_inds = agents
+
+        # reduced people dictionary
+        people_plot = {}
+
+        people_plot["xyrv"] = people["xyrv"][plot_inds]
+        people_plot["id"] = people["id"][plot_inds]
+        people_plot["destinations"] = people["destinations"][plot_inds]
+        people_plot["paths"] = {
+            people["id"][ip]: people["paths"][people["id"][ip]]
+            for ip in plot_inds
+        }
+
+        # plot
+        plot_people(100*i+20, dom, people_plot, contacts, colors, time=t,
+                    plot_people=plot_p, plot_contacts=plot_c,
+                    plot_velocities=plot_v, plot_desired_velocities=plot_vd,
+                    plot_sensors=plot_s, sensors=all_sensors[dom.name],
+                    savefig=True, filename=prefix+'agents.png',
+                    plot_labels=True, ag=agents)
+
+    
     all_people[peopledom["domain"]] = people
 
 # print the box bc I need to see how it works
@@ -180,12 +239,16 @@ for i, peopledom in enumerate(json_people_init):
 cc = 0
 draw = True
 
+# intialize array for holding velocities
+print("number of iterations:", int(np.floor(Tf/dt)))
+vel = np.zeros((agents.shape[0], int(np.floor(Tf/dt)) + 1, 2))
+print("vel shape:", vel.shape)
+
 while (t < Tf):
 
     print("\n===> Time = "+str(t))
 
     # Compute people desired velocity
-    # shifting this down, we'll see how it goes
     for idom, name in enumerate(domains):
         print("===> Compute desired velocity for domain ", name)
         dom = domains[name]
@@ -240,11 +303,8 @@ while (t < Tf):
                                     lambda_, delta, kappa, eta)
 
             nn = people["xyrv"].shape[0]
-            # NOTE edit this Vd - Uold actually!!
-            # - prob for both all_people and virtual_people
             all_people[name]["U"] = dt*(Vd[:nn, :]-Uold[:nn, :])/tau +\
                 Uold[:nn, :] + dt*Forces[:nn, :]/mass
-            # only for the plot of virtual people :
             virtual_people[name]["U"] = dt*(Vd[nn:, :]-Uold[nn:, :])/tau +\
                 Uold[nn:, :] + dt*Forces[nn:, :]/mass
 
@@ -258,8 +318,6 @@ while (t < Tf):
             #colors = all_people[name]["xyrv"][:, 2]
 
             # coloring people according to their destinations
-            # alter here to make everyone moving in shades of 1 colour,
-            #   and everyone moving out shades of another colour
             colors = np.zeros(all_people[name]["xyrv"].shape[0])
             for i,dest_name in enumerate(all_people[name]["destinations"]):
                 ind = np.where(all_people[name]["destinations"]==dest_name)[0]
@@ -277,6 +335,20 @@ while (t < Tf):
 
     # Update people destinations
     all_people = people_update_destination(all_people, domains, dom.pixel_size)
+
+    # store velocities at this time
+    print(all_people[name]["U"].shape)
+    print("vel shape:", vel.shape)
+    for i in range(0, agents.shape[0]):
+        # "U" is in x and y components
+        # only log if person hasn't left domain, log 0 otherwise
+        if (agents[i] < all_people[name]["U"].shape[0]):
+            vel[i][counter][0] = all_people[name]["U"][agents[i]][0]
+            vel[i][counter][1] = all_people[name]["U"][agents[i]][1]
+        else:
+            vel[i][counter][0] = 0
+            vel[i][counter][1] = 0
+    #print(vel)
 
     # Update previous velocities
     for idom, name in enumerate(domains):
@@ -305,4 +377,24 @@ for idom, domain_name in enumerate(all_sensors):
 
 plt.ioff()
 plt.show()
+
+# print stored velocities
+#print(vel)
+
+# plot and store
+time = np.arange(0, Tf+dt, dt)
+for i in range(0, agents.shape[0]):
+    fig, ax = plt.subplots()
+    dist = np.sqrt(np.multiply(vel[i,:,0], vel[i,:,0]) +\
+            np.multiply(vel[i,:,1], vel[i,:,1]))
+
+    ax.plot(time, dist)
+    t = "speed vs time of agent " + str(agents[i])
+    ax.set(xlabel='time (s)', ylabel='speed (m/s)',\
+           title=t)
+
+    t = prefix + "speedplot_" + str(agents[i]) + ".png"
+    fig.savefig(t)
+
+
 sys.exit()

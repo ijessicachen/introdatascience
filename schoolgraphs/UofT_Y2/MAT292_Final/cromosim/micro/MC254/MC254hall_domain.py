@@ -7,22 +7,33 @@
 #     python domain_room.py
 #
 # License: GPL
-# 
-# Modified by Jessica Chen
 
 """
-Create a domain based off of the MC254 floor plan. The dimensions of the
-hallway are determined by photos taken of the hallway.
+Modified by Jessica Chen
+    Jessica Chen <jessi.chen@mail.utoronto.ca>
+
+Create a domain based off of the MC254 floor plan. 
+The dimensions of the hallway are determined by photos 
+of the hallway.
+
+KEY NOTES
+- use the og docs for the normal Social Force Model
+- use the altered docs for our density-dependent 
+  Social Force Model
+- for more detailed visualization of the domain, see 
+  `MC254hall_domain.ipynb`
 """
+
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from matplotlib.patches import Rectangle
 
-from cromosim.domain import Domain
-from cromosim.domain import Destination
-
+# og docs
+#from cromosim.domain import Domain
 # altered docs
-#from domain_dd import Domain
+from domain_dd import Domain
+
+from cromosim.domain import Destination
 
 # To create a Domain object from a background image
 scale = 2/102 
@@ -61,8 +72,6 @@ rect = Rectangle(((153+673+100)*scale, (248-6)*scale), 8*scale, 82*scale)
 dom.add_shape(rect, outline_color=wall_color, fill_color=wall_color)
 
 # Seats
-# - added 5 to block off the tiny gaps near the wall just in case
-#   those cause problems
 # longer (top row) seats
 #     Rectangle( (anchor_x,anchor_y), width, height, angle=0, rotation_point=0 )
 for i in range(0, 12):
@@ -158,11 +167,6 @@ dom.add_shape(line, outline_color=door_color2, fill_color=door_color2)
 # ~~~~
 
 # more destinations in aisles ~~~~~
-# POSSIBLE CHANGES
-# - might need to split between top and bottom if they 
-#   only go to one
-# - might need to stop grouping multiple aisles if they 
-#   just go to the closest one
 
 # first 7 aisles
 n = 7
